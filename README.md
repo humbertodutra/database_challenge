@@ -3,6 +3,15 @@ Average Life Expectancy Triggered Table
 This repository contains a triggered table called "AverageLifeExpectancy" that calculates and maintains the average life expectancy for each continent based on the data from the "country" table.
 Table Structure
 
+"INSERT INTO `AverageLifeExpectancy` VALUES (72.99,'North America'),(67.44,'Asia'),(52.57,'Africa'),(75.15,'Europe'),(70.95,'South America'),(69.72,'Oceania'),(NULL,'Antarctica');"
+
+The initial values ​​above were were calculated by averaging the lifeExpetancy column of each region:
+
+    INSERT INTO world.AverageLifeExpectancy (LifeProm, Region)
+    SELECT AVG(lifeExpectancy) AS LifeProm, continent AS Region
+    FROM world.country
+    GROUP BY continent;
+
 The "AverageLifeExpectancy" table has the following structure:
 
     LifeProm: DECIMAL(10,2) - Represents the average life expectancy.
@@ -32,5 +41,6 @@ Important Considerations
     Ensure that safe update mode is properly configured on your MySQL server to prevent unintended updates.
     Take caution when modifying or deleting data, and always have appropriate backups in place before making any changes to your database.
     Regularly monitor the triggered table for accuracy and verify the results against the "country" table to ensure consistency.
+
 
 
